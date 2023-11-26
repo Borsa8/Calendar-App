@@ -15,9 +15,29 @@ $(document).ready(function () {
     localStorage.clear();
   });
 
-  // Check each if it is in the past, present, or future
+// Check each if it is in the past, present, or future
   $(".time-div").each(function () {
 
-    // Split and convert to numerical values
+// Split and convert to numerical values
     var timeDiv = parseInt($(this).attr("id").split("-")[1]);
+});
+
+// Compare the current time with the event time
+if (currentHour == timeDiv) {
+
+// If it is a match, set present
+  $(this).addClass("present");
+  $(this).children(".description").addClass("white-text");
+} else if (currentHour < timeDiv) {
+
+// If it is prior, set future
+  $(this).removeClass("present");
+  $(this).addClass("future");
+} else if (currentHour > timeDiv) {
+
+  // If it is after, set past
+  $(this).removeClass("future");
+  $(this).addClass("past");
+}
+
 });
